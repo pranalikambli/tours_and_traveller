@@ -1,0 +1,136 @@
+{% load static %}
+{% load i18n %}
+
+
+<!-- header-->
+<header class="main-header dark-header fs-header sticky">
+    <div class="header-inner">
+        <div class="logo-holder">
+            <a href="/"><img src="{% static 'images/logo.png' %}" alt=""></a>
+        </div>
+        <form id="search_text" method="get" action="{% url 'search' %}" autocomplete="off">
+            {% csrf_token %}
+            <div class="header-search vis-header-search">
+                <div class="header-search-input-item">
+                    <input type="text" placeholder="Keywords" value="" name="search" id="search" class="autosearch" />
+                </div>
+                <div class="header-search-select-item">
+                    <select data-placeholder="All Categories" class="chosen-select">
+                        <option>All Categories</option>
+                        <option>Shops</option>
+                        <option>Hotels</option>
+                        <option>Restaurants</option>
+                        <option>Fitness</option>
+                        <option>Events</option>
+                    </select>
+                </div>
+                <button type="submit" class="header-search-button">Search</button>
+            </div>
+        </form>
+        <div class="show-search-button"><i class="fa fa-search"></i> <span>Search</span></div>
+        <a href="dashboard-add-listing.html" class="add-list">Add Listing <span><i
+                class="fa fa-plus"></i></span></a>
+        {% if 'user' not in request.session %}
+             <div class="show-reg-form modal-open"><i class="fa fa-sign-in"></i>Sign In</div>
+        {% endif %}
+        <!-- nav-button-wrap-->
+        <div class="nav-button-wrap color-bg">
+            <div class="nav-button">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <!-- nav-button-wrap end-->
+        <!--  navigation -->
+        <div class="nav-holder main-menu">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#" class="act-link">Home <i class="fa fa-caret-down"></i></a>
+                        <!--second level -->
+                        <ul>
+                            <li><a href="index.html">Parallax Image</a></li>
+                            <li><a href="index2.html">Video</a></li>
+                            <li><a href="index3.html">Map</a></li>
+                            <li><a href="index4.html">Slideshow</a></li>
+                            <li><a href="index5.html">Slider</a></li>
+                            <li><a href="index6.html">Fullscreen Slider</a></li>
+                        </ul>
+                        <!--second level end-->
+                    </li>
+<!--                    <li>-->
+<!--                        <a href="#">Listings <i class="fa fa-caret-down"></i></a>-->
+<!--                        &lt;!&ndash;second level &ndash;&gt;-->
+<!--                        <ul>-->
+<!--                            <li><a href="listing.html">Column map</a></li>-->
+<!--                            <li><a href="listing2.html">Column map 2</a></li>-->
+<!--                            <li><a href="listing3.html">Fullwidth Map</a></li>-->
+<!--                            <li><a href="listing4.html">Fullwidth Map 2</a></li>-->
+<!--                            <li><a href="listing5.html">Without Map</a></li>-->
+<!--                            <li><a href="listing6.html">Without Map 2</a></li>-->
+<!--                            <li>-->
+<!--                                <a href="#">Single <i class="fa fa-caret-down"></i></a>-->
+<!--                                &lt;!&ndash;third  level  &ndash;&gt;-->
+<!--                                <ul>-->
+<!--                                    <li><a href="listing-single.html">Style 1</a></li>-->
+<!--                                    <li><a href="listing-single2.html">Style 2</a></li>-->
+<!--                                    <li><a href="listing-single3.html">Style 3</a></li>-->
+<!--                                    <li><a href="listing-single4.html">Style 4</a></li>-->
+<!--                                </ul>-->
+<!--                                &lt;!&ndash;third  level end&ndash;&gt;-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                        &lt;!&ndash;second level end&ndash;&gt;-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="blog.html">News</a>-->
+<!--                    </li>-->
+                    <li>
+                        <a href="#">Pages <i class="fa fa-caret-down"></i></a>
+                        <!--second level -->
+                        <ul>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="contacts.html">Contacts</a></li>
+                            <li><a href="author-single.html">User single</a></li>
+                            <li><a href="how-itworks.html">How it Works</a></li>
+                            <li><a href="pricing-tables.html">Pricing</a></li>
+                            <li><a href="dashboard-myprofile.html">User Dasboard</a></li>
+                            <li><a href="blog-single.html">Blog Single</a></li>
+                            <li><a href="dashboard-add-listing.html">Add Listing</a></li>
+                            <li><a href="404.html">404</a></li>
+                            <li><a href="coming-soon.html">Coming Soon</a></li>
+                            <li><a href="header2.html">Header 2</a></li>
+                            <li><a href="footer-fixed.html">Footer Fixed</a></li>
+                        </ul>
+                        <!--second level end-->
+                    </li>
+                    {% if request.session.user.role_group_permissions.roles.access_rights == 1 or  request.session.user.role_group_permissions.roles.access_rights == 2 %}
+                    <li>
+                        {% if 'user' in request.session %}
+                            <a href="#">Role Management<i class="fa fa-caret-down"></i></a>
+                            <ul>
+                                <li><a href="{% url 'roles-access-rights-list' %}">Access Rights</a></li>
+                            </ul>
+                        {% endif %}
+                    </li>
+                    {% endif %}
+                    <li>
+                        {% if 'user' in request.session %}
+                            <a href="#">{{ request.session.user.full_name }} <i class="fa fa-caret-down"></i></a>
+                            <ul>
+                                <li><a href="{% url 'update-user' request.session.user.user_id %}">User Profile</a></li>
+                                <li><a href="{% url 'message-board' %}">Message Board</a></li>
+                            </ul>
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if 'user' in request.session %}
+                            <a href="{% url 'user-sign-out' %}" title="Sign Out" class="">&nbsp;&nbsp;<i class="fa fa-sign-out"></i>Sign Out</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- navigation  end -->
+    </div>
+</header>
+<!--  header end -->

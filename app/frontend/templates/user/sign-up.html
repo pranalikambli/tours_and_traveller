@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+<!--section -->
+<section>
+    <!-- container -->
+    <div class="container" id="sign-up-page">
+        <!-- profile-edit-wrap -->
+        <form id="user-sign-up" method="post" action="{% url 'sign-up' %}" enctype="multipart/form-data" autocomplete="off">
+            <div class="profile-edit-wrap">
+                <div class="row">
+                    <div class="col-md-7 col-centered">
+                        <div class="profile-edit-page-header">
+                            <h2>{% trans "Sign Up" %}</h2>
+                        </div>
+                        <!-- profile-edit-container-->
+                        <div class="profile-edit-container">
+                            {% include 'user/registration_form_fields.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!--profile-edit-wrap end -->
+    </div>
+    <!--container end -->
+</section>
+<!-- section end -->
+<div class="limit-box fl-wrap"></div>
+<!--section -->
+<section class="gradient-bg">
+    <div class="cirle-bg">
+        <div class="bg" data-bg="images/bg/circle.png"></div>
+    </div>
+    <div class="container">
+        <div class="join-wrap fl-wrap">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3>Do You Have Questions ?</h3>
+                    <p>Lorem ipsum dolor sit amet, harum dolor nec in, usu molestiae at no.</p>
+                </div>
+                <div class="col-md-4"><a href="contacts.html" class="join-wrap-btn">Get In Touch <i
+                        class="fa fa-envelope-o"></i></a></div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- section end -->
+
+{% endblock %}

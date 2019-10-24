@@ -1,0 +1,85 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+<section class="gray-bg no-pading no-top-padding" id="sec1">
+    <div class="col-list-wrap  center-col-list-wrap left-list">
+        <div class="container">
+            <!-- list-main-wrap-->
+            <div class="list-main-wrap fl-wrap card-listing">
+                <!-- listing-item -->
+                {% if record_list %}
+                    {% for each in record_list %}
+                        <div class="listing-item">
+                            <article class="geodir-category-listing fl-wrap">
+                                <div class="geodir-category-img">
+                                    <img src="{% static 'images/avatar/1.jpg' %}" alt="">
+                                    <div class="overlay"></div>
+                                    <div class="list-post-counter"><span>4</span><i class="fa fa-heart"></i></div>
+                                </div>
+
+                                <div class="geodir-category-content fl-wrap">
+                                    <h3><a href="{% url 'guide-profile' guide_id=each.user_id %}">{{each.user_id | user_name}}</a></h3>
+                                    <p>Details</p>
+                                    <div class="geodir-category-options fl-wrap">
+                                        <div class="listing-rating card-popup-rainingvis" data-starrating2="5">
+                                            <span>(7 reviews)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                        No Records Found
+                {% endif %}
+
+                <!-- pagination-->
+                {% if record_list.has_other_pages %}
+
+                <div class="text-center">
+                    <ul class="pagination pagination-lg text-center">
+                        {% if record_list.has_previous %}
+                            <li>
+                                <a class="previous" href="?page=1">
+                                    <<</a> <a class="previous" href="?page={{ record_list.previous_page_number }}">
+                                        < </a> </li> {% else %} <li class="disabled"><span>
+                                                <<</span> </li> <li class="disabled"><span>
+                                                        <</span> </li> {% endif %} {% if start_index %} <li>
+                                                            <a class="next" href="?page={{ start_index }}">{{ start_index }}</a>
+                            </li>
+
+                            <li class="disabled"><span>&mldr;</span></li>
+                        {% endif %}
+
+                        {% for i in page_range %}
+                            {% if record_list.number == i %}
+                                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% else %}
+                                <li><a class="previous" href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if record_list.has_next %}
+                            {% if end_index %}
+                                <li class="disabled"><span>&mldr;</span></li>
+                                <li><a class="previous" href="?page={{ end_index }}">{{ end_index }}</a></li>
+                            {% endif %}
+                            <li>
+                                <a class="next" href="?page={{ record_list.next_page_number }}"> > </a>
+                                <a class="next" href="?page={{max_index}}"> >> </a>
+                            </li>
+                        {% else %}
+                            <li class="disabled"><span> > </span></li>
+                            <li class="disabled"><span> >> </span></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                {% endif %}
+                <!--Pagination-->
+            </div>
+            <!-- list-main-wrap end-->
+        </div>
+    </div>
+</section>
+<!--  section  end-->
+{% endblock %}

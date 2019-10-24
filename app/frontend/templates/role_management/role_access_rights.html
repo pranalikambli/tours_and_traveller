@@ -1,0 +1,80 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<!-- Body Elements -->
+<section>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <form data-parsley-validate="" method="post">
+        {% csrf_token %}
+            <h1>Role Access Rights</h1>
+            <a href="/roles-access-rights-list" class="btn btn-primary" style="float:right">Back</a>
+
+            <div class="role_form">
+                <div class="row">
+                    <input id="admin_id" name="admin_id" type="hidden"
+                       value='{% if admin_id %} {{admin_id}} {% else %} 0 {% endif %}'>
+                    <input id="role_id" name="role_id" type="hidden"
+                       value='{% if role_id %} {{role_id}} {% else %} 0 {% endif %}'>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="select">
+                            <label class="select-label" style="top:-20px">User Role:</label>{{role_id|get_role_name}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="displayData-container container">
+                    <table class="table responsive roleaccesstable" id="sort" style="width: 100%">
+                        <thead style="margin-bottom: 50px">
+                        <tr>
+                            <th scope="col">&nbsp;</th>
+                            <th scope="col" class="text-center">Add/Edit</th>
+                            <th scope="col" class="text-center">View Only</th>
+                            <th scope="col" class="text-center">No Access</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        {% for each in role_list %}
+                            <tr>
+                                <td data-table-header="Sector">{{each.category_name}}</td>
+                                <td class = "footer-radio">
+                                    <div class="md-radio">
+                                        <input class="admin" id="{{each.codename}}_1" type="radio" name="{{each.codename}}"
+                                               value="{{each.codename}}_can_edit">
+                                        <label for="{{each.codename}}_1"></label>
+                                    </div>
+                                </td>
+                                <td class = "footer-radio">
+                                    <div class="md-radio">
+                                        <input class="admin" id="{{each.codename}}_2" type="radio" name="{{each.codename}}"
+                                               value="{{each.codename}}_view_only">
+                                        <label for="{{each.codename}}_2"></label>
+                                    </div>
+                                </td>
+                                <td class = "footer-radio">
+                                    <div class="md-radio">
+                                        <input class="admin" id="{{each.codename}}_3" type="radio" name="{{each.codename}}"
+                                               value="{{each.codename}}_no_access" checked>
+                                        <label for="{{each.codename}}_3"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                    {% if request.session.user.role_group_permissions.roles.access_rights == 1 %}
+                        <div class="btn-addnow text-center">
+                            <input type="submit" value="UPDATE" class="btn btn-default"/>
+                        </div>
+                    {% endif %}
+            </div>
+    </form>
+</section>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/update_access_rights.js' %}"></script>
+{% endblock %}

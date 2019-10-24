@@ -1,0 +1,2 @@
+-- USA zipcodes
+psql -h 127.0.0.1 -U u_triplani -d triplani -c "\copy zipcode_us (zip_id, state, state_code, county, city, zipcode, country, country_code, longitude, latitude, active) FROM '/var/www/html/triplani/additional_files/db_scripts/2019_07/zipcode.csv' with (format csv,header true, delimiter ',');"

@@ -1,0 +1,24 @@
+{% block content %}
+    <div class="container" id="make_msg">
+        <form name="make-msg-form" method="post" id="make-msg" action="{% url 'make-message' %}"
+              autocomplete="off" data-parsley-validate>
+            {% csrf_token %}
+                <div class="col-md-7 col-centered">
+                    {% if error == 1 and msg|length > 0 %}
+                        <label style="color:red">{{ msg }}</label>
+                    {% endif %}
+                    <input type="hidden" name="guide_id" value="{{guide_details.user_id}}">
+                    <input type="hidden" name="user_id" value="{{request.session.user.user_id}}">
+                    <select  class="form-control" data-style="select-with-transition" id="text_msg" name="text_msg"
+                             style="width: 100%; padding: 12px 20px;margin: 8px 0;
+                             display: inline-block;border: 1px solid #ccc;border-radius: 4px; box-sizing: border-box;" required>
+                        {% for each in msg_list %}
+                            <option value="{{each.message}}">{{each.message}}</option>
+                        {% endfor %}
+                    </select>
+<!--                    <textarea id="form10" class="md-textarea form-control" rows="3" name="text_msg" placeholder="Write Your Message"></textarea>-->
+                    <button type="button" class="btn  big-btn  color-bg flat-btn book-btn" onclick="make_message_ajax();"><span>Sent</span></button>
+                </div>
+        </form>
+    </div>
+{% endblock %}

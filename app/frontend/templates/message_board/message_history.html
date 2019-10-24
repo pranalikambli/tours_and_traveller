@@ -1,0 +1,66 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+<section class="gray-section no-top-padding">
+<div class="container">
+    <h1>Messaging</h1>
+    <div class="messaging">
+        <div class="inbox_msg">
+            <div class="inbox_people">
+                <div class="headind_srch">
+                    <div class="recent_heading">
+                        <h4>Recent</h4>
+                    </div>
+<!--                    <div class="srch_bar">-->
+<!--                        <div class="stylish-input-group">-->
+<!--                            <input type="text" class="search-bar" name="filter" placeholder="Search" >-->
+<!--                            <span class="input-group-addon">-->
+<!--                                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>-->
+<!--                            </span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </div>
+                <div class="inbox_chat">
+                    {%  for each in message_list  %}
+                        <a href="{% url 'get-messages' each.sender_id%}">
+                            <div class="chat_list active_chat {{each.sender_id}}" id="{{each.sender_id}}">
+                                <div class="chat_people">
+                                    <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                    <h5>{{each.sender_id | user_name}} &nbsp;&nbsp; <span class="chat_date">{{each.created_at|date:"d/m/Y"}}</span></h5>
+                                    <p>{{each.sender_id | get_msg}}</p>
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="open_mesgs">
+                <div class="msg_history">
+                    {% for each in chat_list %}
+                        {% if each.receiver_id == guide_id %}
+                            <div class="incoming_msg">
+                                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                <div class="received_msg">
+                                    <div class="received_withd_msg">
+                                        <p>{{each.text_msg}}</p>
+                                        <span class="time_date"> 11:01 AM    |    June 9</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="outgoing_msg">
+                                <div class="sent_msg">
+                                    <p>{{each.text_msg}}</p>
+                                    <span class="time_date"> 11:01 AM    |    June 9</span>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+{% endblock %}

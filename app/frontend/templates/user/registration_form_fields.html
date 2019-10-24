@@ -1,0 +1,15 @@
+{% load static %}
+{% load i18n %}
+<div class="custom-form">
+    {% if message|length > 0 and success == 1 %}
+        <div class="notification success">{{ message }}</div>
+    {% else %}
+        {% csrf_token %}
+        {{ request.user_form.as_p }}
+        {{ request.profile_form.as_p }}
+        <button type="button" class="btn  big-btn  color-bg flat-btn book-btn" onclick="register_user_ajax(this);">
+            <span>Register</span>
+        </button>
+    {% endif %}
+</div>
+<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>

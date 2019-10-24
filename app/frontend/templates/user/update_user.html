@@ -1,0 +1,62 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+<!--section -->
+<section id="sec1">
+    <!-- container -->
+    <div class="container">
+        <!-- profile-edit-wrap -->
+        <div class="profile-edit-wrap">
+            <div class="profile-edit-page-header">
+                <h2>Edit Profile</h2>
+                <div class="breadcrumbs"><a href="{% url 'index' %}">Home</a><span>Edit Profile</span></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="user-profile-menu-wrap fl-wrap">
+                        <!-- user-profile-menu-->
+                        <div class="user-profile-menu">
+                            <h3>Main</h3>
+                            <ul>
+                                <li><a href="{% url 'index' %}"><i class="fa fa-gears"></i>Dashboard</a></li>
+                                <li><a href="{% url 'update-user' request.session.user.user_id %}"  class="user-profile-act"><i class="fa fa-user-o"></i> Edit profile</a></li>
+                                <li><a href="{% url 'change-password' request.session.user.user_id %}"><i class="fa fa-unlock-alt"></i>Change Password</a></li>
+                            </ul>
+                        </div>
+                        <!-- user-profile-menu end-->
+                        <a href="{% url 'user-sign-out' %}" class="log-out-btn">Log Out</a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <!-- profile-edit-container-->
+                    <div class="profile-edit-container">
+                        <div class="profile-edit-header fl-wrap" style="margin-top:30px">
+                            <h4>Edit Profile</h4>
+                        </div>
+                        <div class="custom-form no-icons">
+                            {% if message %}
+                                <div class="notification success">{{ message }}</div>
+                            {% endif %}
+                            <form method="post" name="user-update-form" action="{% url 'update-user' request.session.user.user_id %}"
+                                  id="update-user" enctype="multipart/form-data" autocomplete="off" data-parsley-validate>
+                                <div class="custom-form">
+                                    {% csrf_token %}
+                                    {{ request.user_form.as_p }}
+                                    {{ request.profile_form.as_p }}
+                                    <button type="submit" class="btn  big-btn  color-bg flat-btn book-btn" >Save Changes<i class="fa fa-angle-right"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- profile-edit-container end-->
+                </div>
+            </div>
+        </div>
+        <!--profile-edit-wrap end -->
+    </div>
+    <!--container end -->
+</section>
+<!-- section end -->
+{%  endblock %}

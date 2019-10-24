@@ -1,0 +1,49 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <section>
+        <div class="table-responsive w-100">
+        {% if msg %}
+            <div class="notification success">{{ msg }}</div>
+        {%  endif %}
+        <table class="table responsive datatable dataTable table-striped" id="sort" style="width: 100%">
+            <thead style="margin-bottom: 50px">
+                <tr>
+                    <th scope="col" class="text-center">User Role</th>
+                    <th scope="col" class="text-center">Last Modified by</th>
+                    <th scope="col" class="text-center">Modified On</th>
+                    {% if request.session.user.role_group_permissions.roles.access_rights == 1 %}
+                        <th scope="col" class="text-center">Action</th>
+                    {% endif %}
+                </tr>
+            </thead>
+
+            <tbody>
+                {% if record_list %}
+                    {% for each in record_list %}
+                    <tr>
+                        <td data-table-header="Role Name" >{{each.role}}</td>
+                        <td data-table-header="Last Modified by">{{each.role}}</td>
+                        <td data-table-header="Modified On">{{each.role}}</td>
+                        {% if request.session.user.role_group_permissions.roles.access_rights == 1 %}
+                            <td data-table-header="Action" class="text-center">
+                                <a class="btn-default btnAction" href="{% url 'role-access-rights-update' each.role_id %}">
+                                    <i aria-hidden="true" class="fa fa-pencil-square-o"></i>
+                                </a>
+                            </td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="4">No Records Found</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+    </section>
+{% endblock %}

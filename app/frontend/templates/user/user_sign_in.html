@@ -1,0 +1,33 @@
+{% load static %}
+{% load i18n %}
+{% url 'forgot-password' as forgot_password_url %}
+<div class="custom-form">
+    {% if error == 0 and message|length > 0 %}
+        <div class="notification success">{{ message }}</div>
+    {% endif %}
+    {% if error == 1 and message|length > 0 %}
+        <div class="notification reject">{{ message }}</div>
+    {% endif %}
+
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="notification reject"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+    <form method="post" name="user-sign-in-form" id="user-sign-in-form" action="{% url 'user-sign-in' %}" autocomplete="off" data-parsley-validate>
+        {% csrf_token %}
+        {{ request.login_form.as_p }}
+        <button type="button" class="log-submit-btn" onclick="sign_in_user_ajax();"><span>Log In</span></button>
+        <button type="button" class="log-submit-btn warning" onclick="location.href = '{{ forgot_password_url }}'"><span>Forgot Password</span></button>
+        <div class="clearfix"></div>
+        <!--<div class="filter-tags">-->
+            <!--<input id="check-a" type="checkbox" name="check">-->
+            <!--<label for="check-a">Remember me</label>-->
+        <!--</div>-->
+    </form>
+</div>

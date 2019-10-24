@@ -1,0 +1,208 @@
+{% load static %}
+<!--footer -->
+<footer class="main-footer dark-footer  ">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="footer-widget fl-wrap">
+                    <h3>About Us</h3>
+                    <div class="footer-contacts-widget fl-wrap">
+                        <p>In ut odio libero, at vulputate urna. Nulla tristique mi a massa convallis cursus. Nulla
+                            eu mi magna. Etiam suscipit commodo gravida. Lorem ipsum dolor sit amet, consectetuer
+                            adipiscing elit, sed diam. </p>
+                        <ul class="footer-contacts fl-wrap">
+                            <li><span><i class="fa fa-envelope-o"></i> Mail :</span><a href="#" target="_blank">yourmail@domain.com</a>
+                            </li>
+                            <li><span><i class="fa fa-map-marker"></i> Adress :</span><a href="#" target="_blank">USA
+                                27TH Brooklyn NY</a></li>
+                            <li><span><i class="fa fa-phone"></i> Phone :</span><a href="#">+7(111)123456789</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="footer-widget fl-wrap">
+                    <h3>Our Last News</h3>
+                    <div class="widget-posts fl-wrap">
+                        <ul>
+                            <li class="clearfix">
+                                <a href="#" class="widget-posts-img"><img src="{% static 'images/all/1.jpg' %}"
+                                                                          class="respimg"
+                                                                          alt=""></a>
+                                <div class="widget-posts-descr">
+                                    <a href="#" title="">Vivamus dapibus rutrum</a>
+                                    <span class="widget-posts-date"> 21 Mar 09.05 </span>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <a href="#" class="widget-posts-img"><img src="{% static 'images/all/1.jpg' %}"
+                                                                          class="respimg"
+                                                                          alt=""></a>
+                                <div class="widget-posts-descr">
+                                    <a href="#" title=""> In hac habitasse platea</a>
+                                    <span class="widget-posts-date"> 7 Mar 18.21 </span>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <a href="#" class="widget-posts-img"><img src="{% static 'images/all/1.jpg' %}"
+                                                                          class="respimg"
+                                                                          alt=""></a>
+                                <div class="widget-posts-descr">
+                                    <a href="#" title="">Tortor tempor in porta</a>
+                                    <span class="widget-posts-date"> 7 Mar 16.42 </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="footer-widget fl-wrap">
+                    <h3>Our Twitter</h3>
+                    <div id="footer-twiit"></div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="footer-widget fl-wrap">
+                    <h3>Subscribe</h3>
+                    <div class="subscribe-widget fl-wrap">
+                        <p>Want to be notified when we launch a new template or an udpate. Just sign up and we'll
+                            send you a notification by email.</p>
+                        <div class="subcribe-form">
+                            <form id="subscribe">
+                                <input class="enteremail" name="email" id="subscribe-email" placeholder="Email"
+                                       spellcheck="false" type="text">
+                                <button type="submit" id="subscribe-button" class="subscribe-button"><i
+                                        class="fa fa-rss"></i> Subscribe
+                                </button>
+                                <label for="subscribe-email" class="subscribe-message"></label>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="footer-widget fl-wrap">
+                        <div class="footer-menu fl-wrap">
+                            <ul>
+                                <li><a href="/">Home </a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">Listing</a></li>
+                                <li><a href="/contactus">Contacts</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sub-footer fl-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="about-widget">
+                        <img src="{% static 'images/logo.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="copyright"> &#169; CityBook 2018 . All rights reserved.</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-social">
+                        <ul>
+                            <li><a href="#" target="_blank"><i class="fa fa-facebook-official"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fa fa-chrome"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fa fa-vk"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fa fa-whatsapp"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--footer end  -->
+
+<!--register form -->
+{% if 'user' not in request.session %}
+    <div class="main-register-wrap modal">
+        <div class="main-overlay"></div>
+        <div class="main-register-holder">
+            <div class="main-register fl-wrap">
+                <div class="close-reg"><i class="fa fa-times"></i></div>
+                <h3>Sign In <span>City<strong>Book</strong></span></h3>
+                <!--<div class="soc-log fl-wrap">-->
+                    <!--<p>For faster login or register use your social account.</p>-->
+                    <!--<a href="#" class="facebook-log"><i class="fa fa-facebook-official"></i>Log in with Facebook</a>-->
+                    <!--<a href="#" class="twitter-log"><i class="fa fa-twitter"></i> Log in with Twitter</a>-->
+                <!--</div>-->
+                <!--<div class="log-separator fl-wrap"><span>or</span></div>-->
+                <div id="tabs-container">
+                    <ul class="tabs-menu">
+                        <li class="current"><a href="#tab-1">Login</a></li>
+                        <li><a href="#tab-2">Register</a></li>
+                    </ul>
+                    <div class="tab">
+                        <div id="tab-1" class="tab-content login-modal">
+                            {% include 'user/user_sign_in.html' %}
+                        </div>
+                        <div class="tab">
+                            <div id="tab-2" class="tab-content">
+                                <form method="post" action="{% url 'sign-up' %}" name="user-registration-form" id="user-registration-form" enctype="multipart/form-data" autocomplete="off">
+                                    <div class="user-registration-form-fields">
+                                        {% include 'user/registration_form_fields.html' %}
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+<!--register form end -->
+<a class="to-top"><i class="fa fa-angle-up"></i></a>
+
+
+
+<!--=============== scripts  ===============-->
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/plugins.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/tagmanager.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap3-typeahead.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/parsley.min.js' %}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwJSRi0zFjDemECmFl9JtRj1FY7TiTRRo&libraries=places&callback=initAutocomplete"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap3-typeahead.min.js' %}"></script>
+<!--<script type="text/javascript" src="{% static 'js/search.js' %}"></script>-->
+
+<script type="text/javascript">
+	$('input.autosearch').typeahead({
+	    source:  function (query, result) {
+        	csrf = $("input[name=csrfmiddlewaretoken]").val();
+            url = '/search-autocomplete';
+            $.ajax({
+                url: url,
+                data: { search: query, csrfmiddlewaretoken: csrf },
+                dataType: "json",
+                type: "POST",
+                beforeSend: function () {
+                    // add loader
+                },
+                success: function (data) {
+                    result($.map(data, function (key, val) {
+                        return key.city + ', ' + key.state + ', '+ key.country;
+                    }));
+                },
+            });
+	    },
+	    afterSelect: function (item) {
+            var get_city=item.split(",");
+            get_city= get_city[0];
+            $('#search').val(get_city);
+        }
+	});
+</script>

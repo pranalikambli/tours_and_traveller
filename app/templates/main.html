@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <!--=============== basic  ===============-->
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %} - Triplani</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="robots" content="index, follow"/>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+
+    <link type="text/css" rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/plugins.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/color.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tagmanager.min.css' %}">
+    <!--=============== favicons ===============-->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+    <!-- ###### page specific Head data ######## -->
+    {% block head %}{% endblock %}
+</head>
+<body class="overflow-hidden">
+<div class="pageLoader">
+    <div>
+        <svg viewBox="-2000 -1000 4000 2000">
+            <path id="inf" d="M354-354A500 500 0 1 1 354 354L-354-354A500 500 0 1 0-354 354z"></path>
+            <use xlink:href="#inf" stroke-dasharray="1570 5143" stroke-dashoffset="6713px"> </use>
+
+        </svg>
+        <h3 class="text-white text-center ">Loading...</h3>
+    </div>
+</div>
+<!--loader-->
+<div class="loader-wrap">
+    <div class="pin"></div>
+    <div class="pulse"></div>
+</div>
+<!--loader end-->
+<!-- Main  -->
+<div id="main">
+    {% include 'header.html' %}
+    <!--  wrapper  -->
+    <div id="wrapper">
+        <!-- Content-->
+        <div class="content">
+                {% block content %}{% endblock %}
+        </div>
+        <!-- Content end -->
+    </div>
+    <!-- wrapper end -->
+    {% include 'footer.html' %}
+    <!-- ###### page specific JS ######## -->
+    {% block footer %}{% endblock %}
+</div>
+<!-- Main end -->
+</body>
+</html>

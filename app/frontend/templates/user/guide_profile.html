@@ -1,0 +1,206 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+    <section class="gray-section no-top-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <!-- list-single-main-wrapper -->
+                    <div class="list-single-main-wrapper fl-wrap" id="sec2">
+                        <div class="breadcrumbs gradient-bg  fl-wrap"><a href="{% url 'index' %}">Home</a><a href="{% url 'search' %}">Listings</a><span>Listing Single</span></div>
+                        <!-- list-single-header -->
+                        <div class="list-single-header list-single-header-inside fl-wrap">
+                            <div class="container">
+                                <div class="list-single-header-item">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <h2> {{guide_details.user_id|user_name}} </h2>
+                                            <span class="section-separator"></span>
+                                            <!-- Rating Stars Box -->
+                                            {% if request.session.user %}
+                                                {% if request.session.user.user_id %}
+                                                    <input type="hidden" value="{{guide_details.user_id|get_guide_ratings:request.session.user.user_id}}" id="guide_rating">
+                                                    <div class='rating-stars text-center'>
+                                                        <ul id='stars'>
+                                                            <li class='star' title='Poor' data-id='1' data-value="{{guide_details.user_id}}">
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                            <li class='star' title='Fair' data-id='2' data-value="{{guide_details.user_id}}">
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                            <li class='star' title='Good' data-id='3' data-value="{{guide_details.user_id}}">
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                            <li class='star' title='Excellent' data-id='4' data-value="{{guide_details.user_id}}">
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                            <li class='star' title='WOW!!!' data-id='5' data-value="{{guide_details.user_id}}">
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                {% endif %}
+                                            {% else %}
+                                                <input type="hidden" value="{{guide_details.user_id|get_avg_rating}}" id="guide_rating">
+                                                    <div class='rating-stars text-center'>
+                                                        <ul id='stars'>
+                                                            <li class='star' title='Poor' data-id='1' data-value="{{guide_details.user_id}}">
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                            <li class='star' title='Fair' data-id='2' data-value="{{guide_details.user_id}}">
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                            <li class='star' title='Good' data-id='3' data-value="{{guide_details.user_id}}">
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                            <li class='star' title='Excellent' data-id='4' data-value="{{guide_details.user_id}}">
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                            <li class='star' title='WOW!!!' data-id='5' data-value="{{guide_details.user_id}}">
+                                                                <i class='fa fa-star fa-fw'></i>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="fl-wrap list-single-header-column">
+                                                <span class="viewed-counter"><i class="fa fa-eye"></i> Viewed -  156 </span>
+                                                <a class="custom-scroll-link" href="#sec5"><i class="fa fa-hand-o-right"></i>Add Review </a>
+                                                {% if request.session.user.user_id|is_guide == False %}
+                                                    <a class="custom-scroll-link make-msg-modal" href="#"><i class="fa fa-envelope"></i>Sent Message </a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="list-single-main-item fl-wrap">
+                            <div class="list-single-main-item-title fl-wrap">
+                                <h3>About Hotel </h3>
+                            </div>
+                            <p>Ut euismod ultricies sollicitudin. Curabitur sed dapibus nulla. Nulla eget iaculis lectus. Mauris ac maximus neque. Nam in mauris quis libero sodales eleifend. Morbi varius, nulla sit amet rutrum elementum, est elit finibus tellus, ut tristique elit risus at metus.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra.</p>
+                            <a href="#" class="btn transparent-btn float-btn">Visit Website <i class="fa fa-angle-right"></i></a>
+                            <span class="fw-separator"></span>
+                            <span class="fw-separator"></span>
+                        </div>
+                        <div class="accordion">
+                            <a class="toggle act-accordion" href="#"> Details option   <i class="fa fa-angle-down"></i></a>
+                            <div class="accordion-inner visible">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra.</p>
+                            </div>
+                            <a class="toggle" href="#"> Details option 2  <i class="fa fa-angle-down"></i></a>
+                            <div class="accordion-inner">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra.</p>
+                            </div>
+                            <a class="toggle" href="#"> Details option 3  <i class="fa fa-angle-down"></i></a>
+                            <div class="accordion-inner">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra.</p>
+                            </div>
+                        </div>
+                        <!-- list-single-main-item -->
+                        <div class="list-single-main-item fl-wrap" id="sec5">
+                            <div class="list-single-main-item-title fl-wrap">
+                                <h3>Add Revies  & Rate iteam</h3>
+                            </div>
+                            <!-- Add Review Box -->
+                            <div id="add-review" class="add-review-box">
+                                <div class="leave-rating-wrap">
+                                    <span class="leave-rating-title">Your rating  for this listing : </span>
+                                    <div class="leave-rating">
+                                        <input type="radio" name="rating" id="rating-1" value="1"/>
+                                        <label for="rating-1" class="fa fa-star-o"></label>
+                                        <input type="radio" name="rating" id="rating-2" value="2"/>
+                                        <label for="rating-2" class="fa fa-star-o"></label>
+                                        <input type="radio" name="rating" id="rating-3" value="3"/>
+                                        <label for="rating-3" class="fa fa-star-o"></label>
+                                        <input type="radio" name="rating" id="rating-4" value="4"/>
+                                        <label for="rating-4" class="fa fa-star-o"></label>
+                                        <input type="radio" name="rating" id="rating-5" value="5"/>
+                                        <label for="rating-5" class="fa fa-star-o"></label>
+                                    </div>
+                                </div>
+                                <!-- Review Comment -->
+                                <form   class="add-comment custom-form">
+                                    <fieldset>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label><i class="fa fa-user-o"></i></label>
+                                                <input type="text" placeholder="Your Name *" value=""/>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label><i class="fa fa-envelope-o"></i>  </label>
+                                                <input type="text" placeholder="Email Address*" value=""/>
+                                            </div>
+                                        </div>
+                                        <textarea cols="40" rows="3" placeholder="Your Review:"></textarea>
+                                    </fieldset>
+                                    <button class="btn  big-btn  color-bg flat-btn">Submit Review <i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                                </form>
+                            </div>
+                            <!-- Add Review Box / End -->
+                        </div>
+                        <!-- list-single-main-item end -->
+                    </div>
+                </div>
+                <!--box-widget-wrap -->
+                <div class="col-md-4">
+                    <div class="box-widget-wrap">
+                        <!--box-widget-item -->
+                        <div class="box-widget-item fl-wrap">
+                            <div class="box-widget-item-header">
+                                <h3>Location / Contacts : </h3>
+                            </div>
+                            <div class="box-widget">
+                                <div class="box-widget-content">
+                                    <div class="list-author-widget-contacts list-item-widget-contacts">
+                                        <ul>
+                                            <li><span><i class="fa fa-map-marker"></i> Adress :</span> <a href="#">USA 27TH Brooklyn NY</a></li>
+                                            <li><span><i class="fa fa-phone"></i> Phone :</span> <a href="#">+7(123)987654</a></li>
+                                            <li><span><i class="fa fa-envelope-o"></i> Mail :</span> <a href="#">AlisaNoory@domain.com</a></li>
+                                            <li><span><i class="fa fa-globe"></i> Website :</span> <a href="#">themeforest.net</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="list-widget-social">
+                                        <ul>
+                                            <li><a href="#" target="_blank" ><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#" target="_blank" ><i class="fa fa-vk"></i></a></li>
+                                            <li><a href="#" target="_blank" ><i class="fa fa-whatsapp"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--box-widget-item end -->
+                    </div>
+                </div>
+                <!--box-widget-wrap end -->
+            </div>
+        </div>
+        {% if 'user' in request.session %}
+            <div class="main-register-wrap modal">
+                <div class="main-overlay"></div>
+                <div class="main-register-holder">
+                    <div class="main-register fl-wrap">
+                        <div class="close-modal" id="close-modal"><i class="fa fa-times"></i></div>
+                        <h3 style="margin-top: -40px;">Message Board</h3>
+
+                        <!-- Modal body -->
+                        <div class="modal-body make_msg_modal">
+                            {% include 'message_board/make_message.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </section>
+
+    <!-- section end -->
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/guide.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load i18n %}
+{% url 'forgot-password' as forgot_password_url %}
+
+{% block content %}
+    <!--section -->
+    <section>
+        <!-- container -->
+        <div class="container">
+            <!-- profile-edit-wrap -->
+                <div class="row">
+                    <div class="col-md-7 col-centered">
+                        {% if error == 0 %}
+                            {% if error == 1 and message|length > 0 %}
+                                <div class="notification reject">{{ message }}</div>
+                            {% endif %}
+                            <div class="custom-form login-modal">
+                                {% include 'user/user_sign_in.html' %}
+                            </div>
+                        {% elif error == 1 %}
+                            <div class="notification reject">{{ message }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            <!--profile-edit-wrap end -->
+        </div>
+        <!--container end -->
+    </section>
+    <!-- section end -->
+{% endblock %}
